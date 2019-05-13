@@ -41,10 +41,6 @@ public class ProductServiceImpl implements ProductService {
         return null;
     }
 
-    @Override
-    public List<ProductName> addProductToUserBasket(String cookieValue, Long productId) {
-        return null;
-    }
 
     public List<ProductName> showProducts() {
         return productRepository.getAllProducts();

@@ -33,12 +33,18 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.getProduct(userId);
     }
 
-    public void insertAddress(String city, String street, int house) {
-        orderRepository.insertAddress(city, street, house);
+    public Long insertAddress(String city, String street, int house) {
+        return orderRepository.insertAddress(city, street, house);
     }
 
     public void insertAddressId(Long addressId, Long userId) {
         orderRepository.insertAddressId(addressId, userId);
     }
+
+    @Override
+    public void deleteAll(Long userId) {
+        orderRepository.deleteAll(userId);
+    }
+
 
 }

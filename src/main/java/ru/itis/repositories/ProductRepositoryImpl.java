@@ -37,14 +37,14 @@ public class ProductRepositoryImpl implements ProductRepository {
             "SELECT * FROM product WHERE category_id = ?";
 
     private static final String SQL_GET_ALL_FEEDBACK =
-            "select customer.first_name as firstName, content from customer inner join feedback on customer.id = feedback.customer_id";
+            "select first_name, content from customer c inner join feedback f on c.id=f.customer_id";
 
     private static final String SQL_INSERT =
             "insert into feedback (customer_id, content) values (?, ?)";
 
 
     private RowMapper<Feedback> rowMapperFeedback = (rs, i) -> Feedback.builder()
-                    .firstName(rs.getString("firstName"))
+                    .firstName(rs.getString("first_name"))
                     .content((rs.getString("content")))
                     .build();
 

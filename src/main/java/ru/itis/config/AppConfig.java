@@ -16,6 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
@@ -27,8 +30,9 @@ import java.util.Properties;
 @ComponentScan("ru.itis")
 @PropertySource("classpath:ru.itis//application.properties")
 @EnableTransactionManagement
+@EnableWebMvc
 @EnableJpaRepositories(basePackages = "ru.itis.repositories")
-public class AppConfig {
+public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private Environment environment;
@@ -38,6 +42,13 @@ public class AppConfig {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
         freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/views/ftl/");
         return freeMarkerConfigurer;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/css/");
+        registry.addResourceHandler("/lib/**").addResourceLocations("/WEB-INF/lib/");
+        registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/img/");
     }
 
     @Bean(name = "freeMarkerViewResolver")

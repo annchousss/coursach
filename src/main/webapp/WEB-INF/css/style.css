@@ -441,6 +441,10 @@ form input {
     display: inline-block;
 }
 
+#formS {
+    display: inline-block;
+}
+
 #btnS {
     background-color: #1d181c;
     display: inline-block;

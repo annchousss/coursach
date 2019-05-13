@@ -28,19 +28,157 @@ h4 {
     height: 20px;
 }
 
-#categoryButton {
-  background-color: #3a9e92;
+#btnCat {
+  background-color: #1d181c;
   display: inline-block;
   cursor: pointer;
   color:#ffffff;
   width: 416px;
-  height: 115px;
-  font-family: Arial;
+  height: 80px;
+  font-family: "Raleway";
+  font-weight: 400;
   font-size:40px;
   /*padding:20px 70px;*/
-  text-decoration: none;
+  /*text-decoration: none;*/
   /*text-shadow:0px 0px 0px #2f6627;*/
   margin-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.pull-left {
+  padding-right: 15px;
+}
+
+#btn-order {
+  background-color: #1d181c;
+  display: inline-block;
+  cursor: pointer;
+  color:#ffffff;
+  width: 416px;
+  height: 50px;
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+}
+
+.btnOrder {
+  background-color: #1d181c;
+  display: inline-block;
+  cursor: pointer;
+  color:#ffffff;
+  width: 250px;
+  height: 50px;
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+#sendFeed1 {
+    background-color: #1d181c;
+    display: inline-block;
+    cursor: pointer;
+    color:#ffffff;
+    width: 250px;
+    height: 50px;
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+#sendFeed {
+    background-color: #1d181c;
+    display: inline-block;
+    cursor: pointer;
+    color:#ffffff;
+    width: 250px;
+    height: 50px;
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#cardParam {
+    background-color: white;
+    padding: 30px;
+    margin: 15px;
+    margin-right: 50px;
+    display: inline-block;
+    width: 360px;
+}
+
+#cardParam:hover {
+    background-color: white;
+    padding: 30px;
+    margin: 15px;
+    margin-right: 50px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#card-car-order {
+  background-color: white;
+  padding: 30px;
+  margin: 15px;
+  margin-right: 50px;
+  display: inline-block;
+  width: 360px;
+}
+
+#card-car-order:hover {
+    background-color: white;
+    padding: 30px;
+    margin: 15px;
+    margin-right: 50px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#categoryButtonBack {
+  background-color: #1d181c;
+  display: inline-block;
+  cursor: pointer;
+  color:#ffffff;
+  width: 250px;
+  height: 50px;
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+#cardParam {
+  text-align: justify;
+}
+
+#categoryButton {
+  background-color: #1d181c;
+  display: inline-block;
+  cursor: pointer;
+  color:#ffffff;
+  width: 416px;
+  height: 80px;
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size:40px;
+  margin-top: 30px;
+  margin-right: 20px;
+}
+
+#categoryButton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #card-car {
@@ -48,17 +186,19 @@ h4 {
   padding: 30px;
   margin: 15px;
   margin-right: 50px;
+  display: inline-block;
+  width: 500px;
 }
 
 
 
-#card-car:hover {
-  background-color: white;
-  padding: 30px;
-  margin: 15px;
-  margin-right: 50px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
+/*#card-car:hover {*/
+/*  background-color: white;*/
+/*  padding: 30px;*/
+/*  margin: 15px;*/
+/*  margin-right: 50px;*/
+/*  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);*/
+/*}*/
 
 p {
   line-height: 28px;
@@ -76,10 +216,19 @@ p {
 }
 
 .column {
+  /*float: left;*/
+  text-align: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.column_order {
   float: left;
   text-align: center;
   width: 50%;
 }
+
+
 
 /* Clear floats after the columns */
 .row:after {
@@ -118,19 +267,19 @@ hr {
 }
 
 .navbar {
-  font-weight: 800;
+  font-weight: 400;
   font-size: 14px;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
 .navbar-inverse {
-  background: #2d2d2d;
-  border-color: #2d2d2d;
+  background: linear-gradient(180deg, rgba(45,45,45,1) 0%, rgba(45,45,45,1) 24%, rgba(0,0,0,1) 100%);
+  border-color: #000000;
 }
 
 .navbar-inverse .navbar-nav>.active>a {
-  background: #3a9e92;
+  background: #85627e;
 }
 
 .navbar-inverse .navbar-brand {
@@ -140,8 +289,10 @@ hr {
   letter-spacing: 1px;
 }
 
+
+
 .navbar-inverse .navbar-brand i {
-  color: #a7839f;
+  color: #85627e;
   font-size: 22px;
   letter-spacing: 1px;
 }
@@ -237,7 +388,7 @@ hr {
 
 
 #r {
-  background: #a7839f;
+  background: #85627e;
   padding-top: 35px;
   padding-bottom: 35px;
 }
@@ -273,34 +424,48 @@ hr {
 
 
 #f {
-  background: #2d2d2d;
+  background-image: url("../img/bg-header.jpg");
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
+#sign {
+    width: 300px;
+}
+
 form input {
-  margin: 7px;
   padding: 5px;
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
+    display: inline-block;
 }
 
-form input:hover {
-  border: dotted;
+#formS {
+    display: inline-block;
 }
 
-#button {
-  font-weight: 600;
-  padding: 7px;
-  padding-left: 20px;
-  padding-right: 20px;
+#btnS {
+    background-color: #1d181c;
+    display: inline-block;
+    cursor: pointer;
+    color:#ffffff;
+    width: 250px;
+    height: 50px;
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 20px;
+    margin-right: 20px;
 }
 
 form {
   padding: 20px;
+  padding-bottom: 0;
 }
 
+#aa {
+  color: #2d2d2d;
+}
 
 #f i {
   color: #bdbdbd;
@@ -313,7 +478,7 @@ form {
 }
 
 #copyrights {
-  background: #222222;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 22%, rgba(45,45,45,1) 83%, rgba(45,45,45,1) 100%);
   padding: 20px 0;
   text-align: center;
   color: #fff;

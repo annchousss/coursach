@@ -2,12 +2,15 @@ package ru.itis.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.jdbc.core.JdbcTemplate;
 import ru.itis.models.Address;
 import ru.itis.models.ProductName;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Component
@@ -25,6 +28,9 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     private static final String SQL_DELETE_PRODUCT =
             "DELETE FROM order_history where customer_id = ? and id = ?";
+
+    private static final String SQL_DELETE_ALL_PRODUCTS =
+            "DELETE FROM order_history where customer_id = ?";
 
     private static final String SQL_GET_PRODUCT =
             "SELECT * FROM order_history JOIN product on order_history.product_id = product.id WHERE customer_id = ?";
@@ -44,13 +50,6 @@ public class OrderRepositoryImpl implements OrderRepository {
             .price(rs.getInt("price"))
             .build();
 
-//    private RowMapper<Address> rowMapperAddress = (resultSet, i) -> Address.builder()
-//            .id(resultSet.getLong("id"))
-//            .city(resultSet.getString("city"))
-//            .street(resultSet.getString("street"))
-//            .house(resultSet.getInt("house"))
-//            .build();
-
     public void add(Long userId, Long productId){
         jdbcTemplate.update(SQL_INSERT_PRODUCT, userId, productId);
     }
@@ -59,15 +58,31 @@ public class OrderRepositoryImpl implements OrderRepository {
         jdbcTemplate.update(SQL_INSERT_ADDRESS_ID, addressId, userId);
     }
 
-    public void insertAddress(String city, String street, int house) {
-        jdbcTemplate.update(SQL_INSERT_ADDRESS, city, street, house);
+    public Long insertAddress(String city, String street, int house) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(
+                connection -> {
+                    PreparedStatement ps =
+                            connection.prepareStatement(SQL_INSERT_ADDRESS, new String[] {"id"});
+                    ps.setString(1, city);
+                    ps.setString(2, street);
+                    ps.setInt(3, house);
+
+                    return ps;
+                }, keyHolder);
+
+        return keyHolder.getKey().longValue();
+
+
+
     }
 
     public void delete(Long userId, Long productId){
         jdbcTemplate.update(SQL_DELETE_PRODUCT, userId, productId);
     }
-
-    public List<ProductName> getProduct(Long userId) {
+    public void deleteAll(Long userId){
+        jdbcTemplate.update(SQL_DELETE_ALL_PRODUCTS, userId);
+    }                                                               public List<ProductName> getProduct(Long userId) {
         return jdbcTemplate.query(SQL_GET_PRODUCT, rowMapperProduct, userId);
     }
 

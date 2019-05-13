@@ -31,13 +31,4 @@ public class FeedController {
 
 
 
-//    @Override
-//    public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-//        List<Feedback> feeds = productService.showFeedback();
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("jsp/index");
-//        modelAndView.addObject("feeds", feeds);
-//        return modelAndView;
-//    }
-
 }

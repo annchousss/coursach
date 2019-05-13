@@ -14,6 +14,4 @@ public interface ProductService {
     List<Feedback> showFeedback();
     void insertFeedback(FeedbackForm form);
     String get(Long productId);
-    List<ProductName> addProductToUserBasket(String cookieValue, Long productId);
-
 }

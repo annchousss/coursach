@@ -8,6 +8,7 @@ public interface OrderService {
     void add(Long productId, Long userId);
     void delete(Long id, Long productId);
     List<ProductName> getProduct(Long userId);
-    void insertAddress(String city, String street, int house);
+    Long insertAddress(String city, String street, int house);
     void insertAddressId(Long addressId, Long userId);
+    void deleteAll(Long userId);
 }

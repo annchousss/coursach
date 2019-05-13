@@ -58,14 +58,16 @@
 
 <div class="container w">
     <div class="row centered">
-        <div class="header text-center">
+        <div id="formS" class="header text-center">
             <form method="post">
-                <input id="sign" name="email" placeholder="Your email" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input id="sign" name="email" placeholder="Your phone number [example:79178973532]" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <br>
                 <input id="sign" type="password" name="password" placeholder="Your Password" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <br>
                 <input id="btnS" type="submit" value="Sign In!">
             </form>
+            <a href="/signUp" id="aa">Are you here for the first time?</a>
+            <br>
         </div>
     </div>
 </div>

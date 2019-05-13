@@ -57,13 +57,13 @@
 
 <div class="container w">
     <div class="row centered">
-        <div class="header text-center">
+        <div id="formS" class="header text-center">
             <form method="post">
-                <input id="sign" name="first_name" placeholder="Your first name" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input id="sign" name="firstName" placeholder="Your first name" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <br>
-                <input id="sign" name="last_name" placeholder="Your last name" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input id="sign" name="lastName" placeholder="Your last name" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <br>
-                <input id="sign" name="email" placeholder="Your email" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input id="sign" name="email" placeholder="Your phone number [example:79178973532]" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <br>
                 <input id="sign" type="password" name="password" placeholder="Your Password" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <br>

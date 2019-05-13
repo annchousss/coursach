@@ -1,12 +1,12 @@
 package ru.itis.controllers;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.itis.forms.FeedbackForm;
 import ru.itis.models.Category;
 import ru.itis.models.Customer;
@@ -53,12 +53,12 @@ public class ShopController {
     }
 
     @RequestMapping(value = "/sendorder", method = RequestMethod.POST)
-    @ResponseBody
-    public String sendOrder(HttpServletRequest req,
-                            @RequestParam(value = "productId") Long productId) {
+    //@ResponseBody
+    public ResponseEntity<Object> sendOrder(HttpServletRequest req,
+                                    @RequestParam(value = "productId") Long productId) {
         Long userId = currentUser(req);
         orderService.add(userId, productId);
-        return "redirect:/cars-info";
+        return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/sendAddress", method = RequestMethod.POST)
@@ -67,9 +67,8 @@ public class ShopController {
                              @RequestParam(value = "city") String city,
                              @RequestParam(value = "street") String street,
                              @RequestParam(value = "house") int house) {
-        orderService.insertAddress(city, street, house);
-        Long userId = currentUser(req);
-//        orderService.insertAddressId();
+
+        orderService.insertAddressId(orderService.insertAddress(city, street, house), currentUser(req));
         return "redirect:/order";
     }
 
@@ -96,10 +95,8 @@ public class ShopController {
 
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
     @ResponseBody
-    public List<Category> getCategories(HttpServletRequest req) {
-        Long userId = currentUser(req);
+    public List<Category> getCategories() {
         return productService.showCategories();
-//         productService.showCategories();
     }
 
 
@@ -109,10 +106,21 @@ public class ShopController {
         return productService.showProductsByCatId(Long.valueOf(req.getParameter("categoryId")));
     }
 
-//    @RequestMapping(value = "/showcart", method = RequestMethod.POST)
-//    @ResponseBody
-//    public List<ProductName> showProductsById(HttpServletRequest req) {
-//        return orderService.getAllByUserId(userId);
-//    }
+    @RequestMapping(value = "/deleteOrder", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Object> deleteOrder(HttpServletRequest req,
+                                         @RequestParam(value = "productId") Long productId) {
+        Long userId = currentUser(req);
+        orderService.delete(userId, productId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/deleteAllProducts")
+    public ResponseEntity<Object> deleteAllProducts(HttpServletRequest req){
+        Long userId = currentUser(req);
+        orderService.deleteAll(userId);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

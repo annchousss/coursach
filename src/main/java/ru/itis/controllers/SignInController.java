@@ -25,16 +25,6 @@ public class SignInController {
 
     @PostMapping(value = "/signIn")
     private String login(SignInForm signInForm, HttpServletResponse resp) throws IOException {
-//        Optional<String> optionalCookieValue = usersService.signIn(userForm);
-//        if (optionalCookieValue.isPresent()) {
-//            Cookie cookie = new Cookie("auth", optionalCookieValue.get());
-//            resp.addCookie(cookie);
-//            resp.setStatus(201);
-//            return "redirect:/starterPage";
-//        } else {
-//            resp.setStatus(403);
-//            return null;
-//        }
         UserForm userForm = usersService.signIn(signInForm);
 
         if (userForm != null) {

@@ -19,111 +19,11 @@
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <script src="../../../lib/order.js"></script>
 
 </head>
 
-<script>
-    function deleteProductId(productId) {
-        $.ajax({
-            type: 'post',
-            url: '/deleteOrder',
-            data: {
-                productId: productId,
-                userId: getCookie('userId')
-            }
-        }).done(function (data) {
 
-
-          //  *REDIRECT*
-
-
-        }).fail(function () {
-            alert("oru s tebya)))")
-        });
-    }
-</script>
-
-<script>
-    function showProductId() {
-        $.ajax({
-            type: 'post',
-            url: '/getOrder',
-            data: {
-                // userId: getCookie('userId')
-            }
-        }).done(function (data) {
-            var contentTableHTML = "";
-            var contentHTML = "";
-
-            for (var i = 0; i < data.length; i++) {
-
-                contentTableHTML += ' <div id="card-car" class="card text-center" *ngFor="let event of eventActivities">';
-                contentTableHTML += '<div class="card-header pull-left">';
-                contentTableHTML += '<img src="'+ data[i].image +'" alt="Card image cap" height="180" width="270" marg>';
-                contentTableHTML += '</div>';
-                contentTableHTML += '<div class="card-block">';
-                contentTableHTML += ' <p class="card-text text-left" "font-weight-bold">Model: '+ data[i].title + ' ' + data[i].model +'</p>';
-                contentTableHTML += ' <p class="card-text text-left" "font-weight-bold">Number of places: '+ data[i].numberOfPlaces +'</p>';
-                contentTableHTML += ' <p class="card-text text-left" "font-weight-bold">Full price: '+ data[i].price +' $</p>';
-                contentTableHTML += '</div>';
-                contentTableHTML += '</div>';
-
-                contentHTML += '<button id="categoryButtonBack" class="btn btn-primary" onclick="deleteProductId('+ data[i].id +')">CANCEL ORDER</button>';
-
-            }
-
-
-            var contentTableDiv = document.getElementById("order");
-            var contentDiv = document.getElementById("deleteOrder");
-            contentDiv.innerHTML = contentHTML;
-            contentTableDiv.innerHTML = contentTableHTML;
-            //document.getElementById("counter").innerHTML = count;
-        }).fail(function () {
-            alert("НЕ ОЧ(0(0(")
-        });
-    }
-</script>
-
-<script>
-    function sendAddress() {
-        $.ajax({
-            type: 'post',
-            url: '/sendAddress',
-            data: {
-                city : document.getElementById("city").value,
-                street : document.getElementById("street").value,
-                house : document.getElementById("house").value
-            }
-        }).done(function (data) {
-            var contentTableHTML = "<p>Successfully!</p>";
-            var contentTableDiv = document.getElementById("resultSend");
-            contentTableDiv.innerHTML = contentTableHTML;
-        }).fail(function () {
-            alert("НЕ ОЧ(0(0(")
-        });
-    }
-</script>
-
-<script>
-    function sendFeed() {
-        $.ajax({
-            type: 'post',
-            url: '/insertfeed',
-            data: {
-                your_fb : document.getElementById("feed").value
-                // userId: getCookie('userId')
-            }
-        }).done(function (data) {
-            var contentTableHTML = "<p>Successfully! Your feedback was added to the main page</p>";
-            var contentTableDiv = document.getElementById("resultFeed");
-            contentTableDiv.innerHTML = contentTableHTML;
-        }).fail(function () {
-            alert("baaaaaad(")
-        });
-    }
-
-
-</script>
 
 <body onload="showProductId()">
 <!-- Fixed navbar -->
@@ -141,9 +41,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/feed">HOME</a></li>
                 <li><a href="/cars-info">CARS INFO</a></li>
-                <li class="active"><a href="shop">CHECKOUT</a></li>
-                <li><a href="/signUp">SIGN UP</a></li>
-                <li id="/logout"><a href="logOut">LOG OUT</a></li>
+                <li class="active"><a href="/order">CHECKOUT</a></li>
+                <li><a href="/shop">CATALOG</a></li>
+                <li id="/logout"><a href="/logOut">LOG OUT</a></li>
             </ul>
         </div>
 
@@ -169,7 +69,7 @@
 <#--            <div id="card-car-order" class="card text-center" *ngFor="let event of eventActivities">-->
                 <div class="card-block" id="cardParam">
                     <label for="adr">City: </label>
-                    <input id="input" type="text" id="city" name="address" placeholder="Kazan" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input id="city" type="text" id="city" name="address" placeholder="Kazan" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <br>
                     <label for="city">Street: </label>
                     <input type="text" id="street" name="city" placeholder="Pushkina str." class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -186,7 +86,9 @@
 
         <div>OR</div>
 
-        <div id="deleteOrder"></div>
+        <div id="deleteOrder">
+            <button id="categoryButtonBack" class="btn btn-primary" onclick="deleteAllCars()">CANCEL ALL</button>
+        </div>
 
     </div>
 
